@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Routing() {
+const Navbar = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function Routing() {
   )
 }
 
-export default Routing
+export default Navbar
