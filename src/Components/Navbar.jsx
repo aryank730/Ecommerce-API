@@ -1,120 +1,106 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
+import { GiEgyptianProfile } from "react-icons/gi";
+import { FaOpencart } from "react-icons/fa6";
+import { Link } from 'react-router-dom'
+import { useState } from 'react';
 
 const Navbar = () => {
-  return (
-    <>
-      <nav className="bg-white border-gray-200 py-2.5 dark:bg-gray-900">
-  <div className="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
-    <a href="#" className="flex items-center">
-      <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
-        Company Logo
-      </span>
-    </a>
-    <div className="flex items-center lg:order-2">
-      <div className="hidden mt-2 mr-4 sm:inline-block">
-        <span />
-      </div>
-      <a
-        href="https://themesberg.com/product/tailwind-css/landing-page"
-        className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800"
-      >
-        Download
-      </a>
-      <button
-        data-collapse-toggle="mobile-menu-2"
-        type="button"
-        className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-        aria-controls="mobile-menu-2"
-        aria-expanded="true"
-      >
-        <span className="sr-only">Open main menu</span>
-        <svg
-          className="w-6 h-6"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fillRule="evenodd"
-            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-            clipRule="evenodd"
-          />
-        </svg>
-        <svg
-          className="hidden w-6 h-6"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fillRule="evenodd"
-            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </button>
-    </div>
-    <div
-      className="items-center justify-between w-full lg:flex lg:w-auto lg:order-1"
-      id="mobile-menu-2"
-    >
-      <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
-        <li>
-          <a
-            href="#"
-            className="block py-2 pl-3 pr-4 text-white bg-purple-700 rounded lg:bg-transparent lg:text-purple-700 lg:p-0 dark:text-white"
-            aria-current="page"
-          >
-            Home
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-          >
-            Company
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-          >
-            Marketplace
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-          >
-            Features
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-          >
-            Team
-          </a>
-        </li>
-        <li>
-          <a
-            href="#"
-            className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-purple-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
-          >
-            Contact
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+   return (
+      <>
+         <div className="top-0 py-1 lg:py-2 w-full bg-transparent lg:relative z-50 dark:bg-gray-900">
+            <nav className="z-10 sticky top-0 left-0 right-0 max-w-4xl xl:max-w-5xl mx-auto px-5 py-2.5 lg:border-none lg:py-4">
+               <div className="flex items-center justify-between">
+                  <button>
+                     <div className="flex items-center space-x-2">
+                        <h2 className="text-black dark:text-white font-bold text-2xl">
+                           Company
+                        </h2>
+                     </div>
+                  </button>
+                  <div className="hidden lg:block">
+                     <ul className="flex space-x-10 text-base font-bold text-black/60 dark:text-white">
+                        <NavLink to="/">
+                           <li className="hover:underline hover:underline-offset-4 hover:w-fit transition-all duration-100 ease-linear">
+                              <p>Home</p>
+                           </li></NavLink>
 
-    </>
-  )
+                        <NavLink to="/Collection">
+                           <li className="hover:underline hover:underline-offset-4 hover:w-fit transition-all duration-100 ease-linear">
+                              <p>Collection</p>
+                           </li>
+                        </NavLink>
+
+                        <NavLink to="/About">
+                           <li className="hover:underline hover:underline-offset-4 hover:w-fit transition-all duration-100 ease-linear">
+                              <p>About</p>
+                           </li>
+                        </NavLink>
+
+                        <NavLink to="/Contact">
+                           <li className="hover:underline hover:underline-offset-4 hover:w-fit transition-all duration-100 ease-linear">
+                              <p>Contact</p>
+                           </li>
+                        </NavLink>
+                     </ul>
+                  </div>
+                  {/* <div className="hidden lg:flex lg:items-center gap-x-2">
+                     <button className="flex items-center text-black dark:text-white justify-center px-6 py-2.5 font-semibold">
+                        Sign up
+                     </button>
+                     <button className="flex items-center justify-center rounded-md bg-[#4A3BFF] text-white px-6 py-2.5 font-semibold hover:shadow-lg hover:drop-shadow transition duration-200">
+                        Login
+                     </button>
+                  </div> */}
+
+                  <div className=" flex gap-4">
+
+                  <div className="group relative">
+                     <GiEgyptianProfile size={28} className=" cursor-pointer" />
+                     <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-0">
+                        <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
+                           <p className='cursor-pointer hover:text-black'>my Profile</p>
+                           <p className='cursor-pointer hover:text-black'>Order</p>
+                           <p className='cursor-pointer hover:text-black'>Logout</p>
+                        </div>
+                     </div>
+                  </div>
+
+                  <Link to='' className="relatieve">
+                     <FaOpencart size={28} className=" "/>
+                     <p className='absolute right-[8px] top-[12px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>0</p>
+                  </Link>
+
+
+                  </div>
+
+                  <div className="flex items-center justify-center lg:hidden">
+                     <button className="focus:outline-none text-slate-200 dark:text-white">
+                        <svg
+                           stroke="currentColor"
+                           fill="currentColor"
+                           strokeWidth={0}
+                           viewBox="0 0 20 20"
+                           aria-hidden="true"
+                           className="text-2xl text-slate-800 dark:text-white focus:outline-none active:scale-110 active:text-red-500"
+                           height="1em"
+                           width="1em"
+                           xmlns="http://www.w3.org/2000/svg"
+                        >
+                           <path
+                              fillRule="evenodd"
+                              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
+                              clipRule="evenodd"
+                           />
+                        </svg>
+                     </button>
+                  </div>
+               </div>
+            </nav>
+         </div>
+
+      </>
+   )
 }
 
 export default Navbar

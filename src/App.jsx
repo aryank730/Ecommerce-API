@@ -10,7 +10,7 @@ import Login from './Pages/Login'
 import Contact from './Pages/Contact'
 import Register from './Pages/Register'
 import Orders from './Pages/Orders' 
-import Navbar from './Pages/Navbar'
+import Navbar from './Components/Navbar'
 
 function App() {
 
