@@ -3,9 +3,15 @@ import { NavLink } from 'react-router-dom'
 import { GiEgyptianProfile } from "react-icons/gi";
 import { FaOpencart } from "react-icons/fa6";
 import { Link } from 'react-router-dom'
+import { TiThMenuOutline } from "react-icons/ti";
+import { GiCrossMark } from "react-icons/gi";
+
 import { useState } from 'react';
 
 const Navbar = () => {
+
+   const [visible, setVisible] = useState(false);
+
    return (
       <>
          <div className="top-0 py-1 lg:py-2 w-full bg-transparent lg:relative z-50 dark:bg-gray-900">
@@ -55,45 +61,41 @@ const Navbar = () => {
 
                   <div className=" flex gap-4">
 
-                  <div className="group relative">
-                     <GiEgyptianProfile size={28} className=" cursor-pointer" />
-                     <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-0">
-                        <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
-                           <p className='cursor-pointer hover:text-black'>my Profile</p>
-                           <p className='cursor-pointer hover:text-black'>Order</p>
-                           <p className='cursor-pointer hover:text-black'>Logout</p>
+                     <div className="group relative">
+                        <GiEgyptianProfile size={28} className=" cursor-pointer" />
+                        <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-0">
+                           <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
+                              <p className='cursor-pointer hover:text-black'>my Profile</p>
+                              <p className='cursor-pointer hover:text-black'>Order</p>
+                              <p className='cursor-pointer hover:text-black'>Logout</p>
+                           </div>
                         </div>
                      </div>
+
+                     <Link to='' className="relative">
+                        <FaOpencart size={28} className=" " />
+                        <p className='absolute right-[-12px] top-[-6px] w-4 text-center leading-4 bg-orange-600 text-white aspect-square rounded-full text-[8px]'>0</p>
+                     </Link>
+
+                     <div className="">
+
+                     <TiThMenuOutline onClick={() => setVisible(true)} size="28" className="cursor-pointer sm:hidden" />
+                     </div>
+
                   </div>
 
-                  <Link to='' className="relatieve">
-                     <FaOpencart size={28} className=" "/>
-                     <p className='absolute right-[8px] top-[12px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>0</p>
-                  </Link>
+                  {/* set side bar for mobile */}
+                  <div className={`absolute top-0 left-0 w-full overflow-scroll transition-all h-screen  z-20 ${visible ? 'block' : 'hidden'}`} onClick={() => setVisible(false)}>
+                     <div className="flex flex-col pt-12 space-y-4 m-2  text-gray-600">
+                        <div className="flex gap-4 items-center p-3 cursor-pointer">
+                              <GiCrossMark size={28} onClick={()=>setVisible(false)} className="text-black" />
+                        </div>
 
-
-                  </div>
-
-                  <div className="flex items-center justify-center lg:hidden">
-                     <button className="focus:outline-none text-slate-200 dark:text-white">
-                        <svg
-                           stroke="currentColor"
-                           fill="currentColor"
-                           strokeWidth={0}
-                           viewBox="0 0 20 20"
-                           aria-hidden="true"
-                           className="text-2xl text-slate-800 dark:text-white focus:outline-none active:scale-110 active:text-red-500"
-                           height="1em"
-                           width="1em"
-                           xmlns="http://www.w3.org/2000/svg"
-                        >
-                           <path
-                              fillRule="evenodd"
-                              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
-                              clipRule="evenodd"
-                           />
-                        </svg>
-                     </button>
+                        <NavLink onClick={()=>setVisible(false)} className="py-2 pl-6 border rounded-2xl font-bold hover:black" to="/">Home</NavLink>
+                        <NavLink onClick={()=>setVisible(false)} className="py-2 pl-6 border rounded-2xl font-bold hover:black" to="/Collection">Collection</NavLink>
+                        <NavLink onClick={()=>setVisible(false)} className="py-2 pl-6 border rounded-2xl font-bold hover:black" to="/About">About</NavLink>
+                        <NavLink onClick={()=>setVisible(false)} className="py-2 pl-6 border rounded-2xl font-bold hover:black" to="/Contact">Contact</NavLink>
+                     </div>
                   </div>
                </div>
             </nav>
