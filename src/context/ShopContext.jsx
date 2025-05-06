@@ -9,11 +9,9 @@ const ShopContext = (props) => {
    const taxdelivery_fee = 40
   
    const value = {
-    cartItems: [],
-    addToCart: (item) => {},
-    removeFromCart: (id) => {},
-    getTotalItems: () => {},
-    getTotalCost: () => {},
+    products,
+    currency,
+    delivery_fee,
    }
 }
 
