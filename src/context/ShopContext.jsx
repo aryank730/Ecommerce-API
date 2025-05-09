@@ -1,24 +1,27 @@
-import {React, createContext} from 'react'
-import { products} from '../assets/assets'
+import { createContext } from 'react'
+import { products } from '../assets/assets.js';
 
 export const ShopContext = createContext()
 
-const ShopContext = (props) => {
+const ShopContextProvider = (props) => {
 
    const currency = '₹'
-   const taxdelivery_fee = 40
-  
+   const delivery_fee = 40
+
+
    const value = {
-    products,
-    currency,
-    delivery_fee,
+      products,
+      currency,
+      delivery_fee,
    }
-}
 
-return (
-   <ShopContext.Provider value={value}>
-      {props.children}
-   </ShopContext.Provider>
-)
+   return (
+      <ShopContext.Provider value={value}>
+         {props.children}
+      </ShopContext.Provider>
+   );
+};
 
-export default ShopContext
+
+
+export default ShopContextProvider
