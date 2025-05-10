@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+@media (max-width:640px) {
+   a.active{
+      background: #000;
+      color:white;
+   }
+}

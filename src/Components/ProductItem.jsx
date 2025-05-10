@@ -9,17 +9,17 @@ const ProductItem = ({ id, name, image, price }) => {
 
    return (
       <>
-         <Link className='text-gray-700 mt-4 cursor-pointer m-0.5 mx-0.5 md:m-1 lg:m-2 h-[140px] w-screen' to={`/product/${id}`}>
-            <div className=" m-1 -mt-12 md:m-2 lg:m-4 flex flex-col space-x-0 md:space-x-1.5 lg:space-x-2.5  w-full md:w-[90%] lg:w-[90%] overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+         <Link className='text-gray-700 mt-4 md:mt-0 cursor-pointer m-0.5 mx-0.5 md:m-1 lg:m-2  w-screen' to={`/product/${id}`}>
+            <div className=" m-1 -mt-12 md:m-2 lg:m-4 flex flex-col  md:space-x-1.5 lg:space-x-2.5  w-full md:w-[90%] lg:w-[90%] overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
                <div
-                  className="relative  mx-1.5 mt-2 w-full flex h-[240px]  overflow-hidden rounded-xl"
+                  className="relative m-  mx-1.5 mt-2 w-full flex p-2  overflow-hidden rounded-xl"
                   
                >
                   <img
-                     className="object-cover m-auto h-full transition-transform duration-200 hover:scale-110"
+                     className="object-cover m-auto justify-center  h-full transition-transform duration-200 hover:scale-101"
                      src={image[0]}  alt="product image"
                   />
-                  <span className="absolute top-0 left-0 m-1 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
+                  <span className="absolute top-0 left-0 m-1 rounded-full bg-gray-600 px-2 text-center text-sm font-medium text-white">
                      32% OFF
                   </span>
                </div>
