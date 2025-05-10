@@ -9,29 +9,29 @@ const ProductItem = ({ id, name, image, price }) => {
 
    return (
       <>
-         <Link className='text-gray-700 cursor-pointer' to={`/product/${id}`}>
-            <div className="relative m-8 flex w-fit max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+         <Link className='text-gray-700 mt-4 cursor-pointer m-0.5 mx-0.5 md:m-1 lg:m-2 h-[140px] w-screen' to={`/product/${id}`}>
+            <div className=" m-1 -mt-12 md:m-2 lg:m-4 flex flex-col space-x-0 md:space-x-1.5 lg:space-x-2.5  w-full md:w-[90%] lg:w-[90%] overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
                <div
-                  className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
+                  className="relative  mx-1.5 mt-2 w-full flex h-[240px]  overflow-hidden rounded-xl"
                   
                >
                   <img
                      className="object-cover m-auto h-full transition-transform duration-200 hover:scale-110"
                      src={image[0]}  alt="product image"
                   />
-                  {/* <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
-                     39% OFF
-                  </span> */}
+                  <span className="absolute top-0 left-0 m-1 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
+                     32% OFF
+                  </span>
                </div>
-               <div className="mt-4 px-5 pb-5">
+               <div className="mt-2 px-5 pb-5">
                   <div>
-                     <h5 className="text-md tracking-tight text-slate-900">
+                     <h5 className="text-[17px] h-[48px] md:h-[24px] tracking-tight text-slate-900">
                         {name}
                      </h5>
                   </div>
-                  <div className="mt-2 mb-5 flex items-center justify-between">
+                  <div className="mt-1 mb-0  items-center justify-between">
                      <p>
-                        <span className="text-3xl font-bold text-slate-900">{currency}{price}</span>
+                        <span className="text-xl font-bold text-slate-900">{currency}{price}</span>
                         {/* <span className="text-sm text-slate-900 line-through">$699</span> */}
                      </p>
                      <div className="flex items-center">
@@ -85,12 +85,12 @@ const ProductItem = ({ id, name, image, price }) => {
                         </span>
                      </div>
                   </div>
-                  <div 
-                     className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                  {/* <div 
+                     className="flex items-center justify-center rounded-md bg-slate-900 px-2 py-2 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
                   >
                      <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="mr-2 h-6 w-6"
+                        className="mr-2 h-6 w-5"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -103,7 +103,7 @@ const ProductItem = ({ id, name, image, price }) => {
                         />
                      </svg>
                      Add to cart
-                  </div>
+                  </div> */}
                </div>
             </div>
 
