@@ -11,6 +11,7 @@ import Contact from './Pages/Contact'
 import Register from './Pages/Register'
 import Orders from './Pages/Orders' 
 import Navbar from './Components/Navbar'
+import Footer from './Pages/Footer'
 
 function App() {
 
@@ -34,6 +35,7 @@ function App() {
       <Route path="/products/:category/:subCategory" element={<Products />} />
       <Route path="/products/:category/:subCategory/:subSubCategory" element={<Products />} /> */}
     </Routes>
+    <Footer/>
     </>
   )
 }
