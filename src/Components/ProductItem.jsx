@@ -10,22 +10,21 @@ const ProductItem = ({ id, name, image, price }) => {
    return (
       <>
          <Link className='text-gray-700 mt-4 md:mt-0 cursor-pointer m-0.5 mx-0.5 md:m-1 lg:m-2  w-screen' to={`/product/${id}`}>
-            <div className=" m-1 -mt-12 md:m-2 lg:m-4 flex flex-col  md:space-x-1.5 lg:space-x-2.5  w-full md:w-[90%] lg:w-[90%] overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
-               <div
-                  className="relative m-  mx-1.5 mt-2 w-full flex p-2  overflow-hidden rounded-xl"
-                  
-               >
+            <div className=" m-1 -mt-10 md:m-2 lg:m-4 flex flex-col  md:space-x-1.5 lg:space-x-2.5  w-full md:w-[90%] lg:w-[90%] overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+               <div className="relative w-full overflow-hidden rounded-xl p-2">
                   <img
-                     className="object-cover m-auto justify-center  h-full transition-transform duration-200 hover:scale-101"
-                     src={image[0]}  alt="product image"
+                     className="w-full object-cover mx-auto transition-transform duration-200 hover:scale-105"
+                     src={image[0]}
+                     alt="product image"
                   />
                   <span className="absolute top-0 left-0 m-1 rounded-full bg-gray-600 px-2 text-center text-sm font-medium text-white">
                      32% OFF
                   </span>
                </div>
+
                <div className="mt-2 px-5 pb-5">
                   <div>
-                     <h5 className="text-[17px] h-[48px] md:h-[24px] tracking-tight text-slate-900">
+                     <h5 className="text-[17px] tracking-tight text-slate-900">
                         {name}
                      </h5>
                   </div>

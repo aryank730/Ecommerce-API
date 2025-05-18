@@ -16,6 +16,7 @@ const Collection = () => {
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
   const [checkedCategories, setCheckedCategories] = useState({});
+  const [sortType, setSortType] = useState('relevant');
 
   useEffect(() => {
     // Initialize checkbox states
@@ -73,6 +74,27 @@ const Collection = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [filterProducts]);
+
+
+  const sortFilter =()=>{
+
+    switch (sortType) {
+      case 'low-high':
+        setFilterProducts((prev) => [...prev].sort((a, b) => (a.price - b.price)));
+        break;
+
+        case 'high-low':
+          setFilterProducts((prev) => [...prev].sort((a,b)=>(b.price - a.price)))
+    
+      default:
+        applyFilter();
+        break;
+    }
+  }
+
+  useEffect(() => {
+    sortProduct();
+  }, [sortType]);
 
   return (
     <div>
@@ -163,7 +185,7 @@ const Collection = () => {
           <div className="flex justify-between text-base sm:text-2xl mx-3 mb-4">
             <Title text1={'All '} text2={'COLLECTION'} />
 
-            <select className="border-2 border-gray-300 text-sm px-2">
+            <select onChange={(e)=>setSortType(e.target.value)} className="border-2 border-gray-300 text-sm px-2">
               <option value="relevant">Sort by: Relevant</option>
               <option value="low-high">Sort by: Low to High</option>
               <option value="high-low">Sort by: High to Low</option>
