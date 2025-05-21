@@ -4,7 +4,7 @@ import Home from './Pages/Home'
 import Cart from './Pages/Cart'
 import PlaceOrder from './Pages/PlaceOrder'
 // import NotFound from './Pages/NotFound'
-import Products from './Pages/Product'
+import Product from './Pages/Product'
 import Collection from './Pages/Collection'
 import Login from './Pages/Login'
 import Contact from './Pages/Contact'
@@ -23,7 +23,7 @@ function App() {
       <Route path="/cart" element={<Cart />} />
       <Route path="/placeorder" element={<PlaceOrder />} />
       <Route path="Collection" element={<Collection />} />
-      <Route path="/products:Productid" element={<Products />} />
+      <Route path="/product/:productId" element={<Product />} />
       <Route path="/Contact" element={<Contact />} />
       <Route path="/Orders" element={<Orders />} />
       <Route path="/login" element={<Login />} />
