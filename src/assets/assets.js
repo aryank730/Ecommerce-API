@@ -119,7 +119,7 @@ export const products = [
       name: 'half sleeve t-shirt',
       description: 'This is a description of product 3...',
       category: 'kids',
-      subCategory: 'kids',
+      subCategory: 'pants',
       date: '2023-10-01',
       bestSeller: false,
       size: ["XS", "S", "M", "L", "XL"]

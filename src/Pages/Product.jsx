@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import { assets } from '../assets/assets';
-import RelatedProduct from '../Components/RelatedProduct';
+import RelatedProducts from '../Components/RelatedProduct';
 
 const Product = () => {
   const { productId } = useParams();
@@ -125,7 +125,7 @@ const Product = () => {
 
       {/* display related product  */}
 
-      <RelatedProduct category={productData.category} subCategory={productData.subCategory} />
+      <RelatedProducts category={productData.category} subCategory={productData.subCategory} />
 
     </div>
 
