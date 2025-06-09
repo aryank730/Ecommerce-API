@@ -9,7 +9,7 @@ const ProductItem = ({ id, name, image, price }) => {
 
    return (
       <>
-         <Link className='text-gray-700 mt-4 md:mt-0 cursor-pointer m-0.5 mx-0.5 md:m-1 lg:m-2  w-screen' to={`/product/${id}`}>
+         <Link className='text-gray-700 mt-12 md:mt-0 cursor-pointer m-0.5 mx-0.5 md:m-1 lg:m-2' to={`/product/${id}`}>
             <div className=" m-1 -mt-10 md:m-2 lg:m-4 flex flex-col  md:space-x-1.5 lg:space-x-2.5  w-full md:w-[90%] lg:w-[90%] overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
                <div className="relative w-full gap-4 overflow-hidden rounded-xl p-2">
                   <img
