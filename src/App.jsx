@@ -12,11 +12,13 @@ import Register from './Pages/Register'
 import Orders from './Pages/Orders' 
 import Navbar from './Components/Navbar'
 import Footer from './Pages/Footer'
+import { ToastContainer, toast } from 'react-toastify';
 
 function App() {
 
   return (
     <>
+    <ToastContainer />
     <Navbar/>
      <Routes>
       <Route path="/" element={<Home />} />

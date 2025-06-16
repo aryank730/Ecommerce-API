@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 import { GiEgyptianProfile } from "react-icons/gi";
 import { FaOpencart } from "react-icons/fa6";
@@ -7,10 +7,12 @@ import { TiThMenuOutline } from "react-icons/ti";
 import { GiCrossMark } from "react-icons/gi";
 
 import { useState } from 'react';
+import { ShopContext } from '../context/ShopContext';
 
 const Navbar = () => {
 
    const [visible, setVisible] = useState(false);
+   const {getCartCount} = useContext(ShopContext); // Assuming getCartCount is defined in context or state
 
    return (
       <>
@@ -72,10 +74,10 @@ const Navbar = () => {
                         </div>
                      </div>
 
-                     <Link to='' className="relative">
+                     <NavLink to='/cart' className="relative">
                         <FaOpencart size={28} className=" " />
-                        <p className='absolute right-[-12px] top-[-6px] w-4 text-center leading-4 bg-orange-600 text-white aspect-square rounded-full text-[8px]'>0</p>
-                     </Link>
+                        <p className='absolute right-[-12px] top-[-6px] w-4 text-center leading-4 bg-orange-600 text-white aspect-square rounded-full text-[8px]'>{getCartCount()}</p>
+                     </NavLink>
 
                      <div className="">
 
