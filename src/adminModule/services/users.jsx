@@ -8,6 +8,10 @@ export const getUser = (id) => {
   return api.get(`/users/${id}`);
 };
 
+export const getRoles = () => {
+  return api.get(`/users/roles`);
+};
+
 export const createUser = (userData) => {
   return api.post('/users', userData);
 };

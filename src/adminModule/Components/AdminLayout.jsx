@@ -6,10 +6,10 @@ import Footer from './AdminFooter';
 
 const AdminLayout = () => {
   return (
-    <div className="admin-layout">
-      <div className="admin-container">
+    
+      <div>
         <Sidebar />
-        <div className="main-content">
+        <div className="content-body">
           <Navbar />
           <div className="content-wrapper">
             <Outlet />
@@ -17,7 +17,7 @@ const AdminLayout = () => {
           <Footer />
         </div>
       </div>
-    </div>
+    
   );
 };
 

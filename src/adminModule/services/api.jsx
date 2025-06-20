@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL:  'http://localhost:3000/',
+  baseURL:  'http://168.231.122.38:3001/',
 });
 
 // Request interceptor to add auth token
@@ -23,7 +23,7 @@ api.interceptors.response.use(
     if (error.response?.status === 401) {
       // Handle unauthorized (e.g., redirect to login)
       localStorage.removeItem('admin_token');
-      window.location = '/login';
+      window.location = '/admin/login';
     }
     return Promise.reject(error);
   }

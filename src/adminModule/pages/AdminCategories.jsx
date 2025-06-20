@@ -54,7 +54,7 @@ const AdminCategories = () => {
     <div className="card">
       <div className="card-header d-flex justify-content-between align-items-center">
         <h4 className="card-title">Categories Management</h4>
-        {user.roles.includes('admin') && (
+        {user.roles.includes('super_admin') && (
           <Link to="/admin/categories/new" className="btn btn-primary">
             Add New Category
           </Link>
@@ -96,7 +96,7 @@ const AdminCategories = () => {
                     <td>
                       <div className="d-flex gap-2">
                         <Link
-                          to={`/admin/categories/${category._id}/edit`}
+                          to={`/admin/categories/${category.id}/edit`}
                           className="btn btn-sm btn-warning"
                         >
                           Edit

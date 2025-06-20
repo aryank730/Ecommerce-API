@@ -5,6 +5,8 @@ import { useAuth } from '../../contexts/AuthContext';
 
 const UserForm = () => {
   const { id } = useParams();
+    const [productsData, setProductsData] = useState({ products: [], count: 0 });
+
   const navigate = useNavigate();
   const { user: currentUser } = useAuth();
   const [formData, setFormData] = useState({
@@ -34,7 +36,7 @@ const UserForm = () => {
         }
         
         // Fetch available roles (you might need to create an endpoint for this)
-        const rolesResponse = await api.get('/roles');
+        const rolesResponse = await api.get('/users/roles');
         setAvailableRoles(rolesResponse.data);
       } catch (error) {
         setError('Failed to fetch data');

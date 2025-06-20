@@ -38,7 +38,7 @@ const UserList = () => {
   if (error) return <div className="alert alert-danger">{error}</div>;
 
   return (
-    <div className="content-body">
+    
       <div className="container-fluid">
         <div className="row page-titles">
           <ol className="breadcrumb">
@@ -52,8 +52,8 @@ const UserList = () => {
             <div className="card">
               <div className="card-header d-flex justify-content-between align-items-center">
                 <h4 className="card-title">User Management</h4>
-                {currentUser?.roles?.includes('admin') && (
-                  <Link to="/users/new" className="btn btn-primary">
+                {currentUser?.roles?.includes('super_admin') && (
+                  <Link to="/admin/users/new" className="btn btn-primary">
                     Add New User
                   </Link>
                 )}
@@ -126,7 +126,7 @@ const UserList = () => {
           </div>
         </div>
       </div>
-    </div>
+
   );
 };
 
