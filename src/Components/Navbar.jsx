@@ -64,10 +64,10 @@ const Navbar = () => {
                   <div className=" flex gap-4">
 
                      <div className="group relative">
-                        <GiEgyptianProfile size={28} className=" cursor-pointer" />
+                        <Link to='login'><GiEgyptianProfile size={28} className=" cursor-pointer" /> </Link>
                         <div className="group-hover:block hidden absolute dropdown-menu right-0 pt-0">
                            <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
-                              <p className='cursor-pointer hover:text-black'>my Profile</p>
+                              <p className='cursor-pointer hover:text-black'>My Profile</p>
                               <p className='cursor-pointer hover:text-black'>Order</p>
                               <p className='cursor-pointer hover:text-black'>Logout</p>
                            </div>
