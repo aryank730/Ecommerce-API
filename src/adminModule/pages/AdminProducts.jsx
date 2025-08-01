@@ -109,7 +109,7 @@ const AdminProducts = () => {
                           <td>
                             <img
 src={product.thumbnail?.local_path 
-  ? `http://localhost:3000/${product.thumbnail.local_path}` 
+  ? `https://atelierluphien.com/api/${product.thumbnail.local_path}` 
   : '/images/default-product.png'}
                               alt={product.name}
                               style={{ width: '50px', height: '50px', objectFit: 'cover' }}

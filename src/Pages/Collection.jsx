@@ -1,7 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
-import { ShopContext } from '../context/ShopContext';
+import  ShopContext  from '../context/ShopContext';
 import Title from '../Components/Title';
 import ProductItem from '../Components/ProductItem';
+import { IoFilter } from "react-icons/io5";
+import {Helmet, HelmetProvider } from 'react-helmet-async'
 
 const Collection = () => {
   const categories = {
@@ -9,6 +11,8 @@ const Collection = () => {
     wear: ['T-shirt', 'Pants', 'Shoes'],
     accessories: ['Bags', 'Watches', 'Sunglasses'],
   };
+
+
 
   const { products } = useContext(ShopContext);
   const [showFilter, setShowFilter] = useState(false);
@@ -96,30 +100,44 @@ const Collection = () => {
   }
 
   useEffect(() => {
-    sortFilter(); 
+    sortFilter();
   }, [sortType]);
 
 
   return (
     <div>
-      <div className="flex flex-col sm:flex-row gap-1 sm:gap-10 pt-8 ">
-        {/* Filter Sidebar */}
-        <div className="min-w-60 p-5 rounded-lg shadow-md">
-          <h2 onClick={() => setShowFilter(!showFilter)} className="text-3xl opacity-65 font-light cursor-pointer">
-            Filter
-          </h2>
+      <Helmet>
+        <title>Collection</title>
+        <meta name="Fashion Collection" content="Collect Collaction of Lexury Fashion" />
+        <meta name="keywords" content="Atelier Collaction, Fashion Collaction, Collaction of lexury, luxury fashion" />
+        <meta name="author" content="Atelier Luphien" />
+          <link rel="canonical" href="https://atelierluphien.com/collection" />
 
-          <div className={`flex flex-col gap-2 mt-5 ${showFilter ? '' : 'hidden'} sm:hidden md:block`}>
-            <p className="mb-3 text-sm font-medium">Category</p>
+      </Helmet>
+      <div className="flex flex-col m-auto z-100 sm:flex-row gap-1 sm:gap-10 mt-1 ">
+        {/* Filter Sidebar */}
+        <div style={{
+          background: 'rgba(147, 147, 147, 0.2)',
+          boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+          backdropFilter: 'blur(5px)',
+          WebkitBackdropFilter: 'blur(5px)',
+          border: '1px solid rgba(255, 255, 255, 0.3)',
+        }} className="min-w-64  md:max-w-64 sm:h-auto md:h-screen px-3 pt-0 md:pt-4 rounded-b-md shadow-md sticky top-16 md:top-20 rounded-md">
+          <div onClick={() => setShowFilter(!showFilter)} className="text-lg w-fit m-1 flex items-center gap-2 border-b px-3 text-black border-t rounded shadow opacity-75 font-light cursor-pointer">
+            <span><IoFilter /></span> Filter
+          </div>
+
+          <div className={`flex flex-col gap-2 mt-2  ${showFilter ? '' : 'hidden'} sm:hidden md:block`}>
+            <p className="mb-3 text-sm text-black font-medium">Category</p>
 
             {categories.gender.map((cat) => (
-              <label key={cat} className="flex items-center space-x-2 cursor-pointer select-none">
+              <label key={cat} className="flex-cols text-left border-b md:border-b-0 py-1 px-2  text-gray-700 gap-5 rounded-md border-r items-center space-x-2 cursor-pointer select-none">
                 <span
-                  className={`relative w-5 h-5 border rounded transition-all duration-200 
+                  className={`relative w-5 h-5 gap-3 border rounded transition-all duration-200 
                     ${checkedCategories[cat] ? 'bg-blue-600 border-blue-600' : 'border-gray-400'}`}
                 >
                   <svg
-                    className="absolute top-[3px] left-[2px] w-3 h-3 stroke-white"
+                    className="absolute top-[3px] left-[2px] w-3 h-3 stroke-black"
                     viewBox="0 0 12 10"
                     fill="none"
                     strokeWidth="2"
@@ -145,12 +163,12 @@ const Collection = () => {
               </label>
             ))}
 
-            <hr className="m-4 opacity-30" />
+            <hr className="m-2 opacity-50" />
 
-            <p className="mb-3 text-sm font-medium">Type</p>
+            <p className="mb-3 text-sm text-black font-medium">Type</p>
 
             {categories.wear.map((cat) => (
-              <label key={cat} className="flex items-center space-x-2 cursor-pointer select-none">
+              <label key={cat} className="flex text-left border-b md:border-b-0  py-1 px-2 text-black gap-5 rounded-md border-r items-center space-x-2 cursor-pointer select-none">
                 <span
                   className={`relative w-5 h-5 border rounded transition-all duration-200 
                     ${checkedCategories[cat] ? 'bg-blue-600 border-blue-600' : 'border-gray-400'}`}
@@ -186,22 +204,22 @@ const Collection = () => {
 
         {/* Product Grid */}
         <div className="flex-1">
-          <div className="flex justify-between text-base sm:text-2xl mx-3 mb-4">
-            <Title text1={'All '} text2={'COLLECTION'} />
+          <div className="flex items-center text-center justify-around text-base sm:text-lg mx-8 mt-4 -mb-8">
+            <Title className="sm:text-lg mx-2 mt-2"  text2={'COLLECTION'} />
 
-            <select onChange={(e) => setSortType(e.target.value)} className="border-2 border-gray-300 text-sm px-2">
-              <option value="relevant">Sort by: Relevant</option>
-              <option value="low-high">Sort by: Low to High</option>
-              <option value="high-low">Sort by: High to Low</option>
+            <select onChange={(e) => setSortType(e.target.value)} className="border rounded-md border-gray-800 sm:text-lg mx-3 mb-4 text-xs px-2 py-1 focus:outline-none border-b focus:ring-2 focus:ring-gray-400">
+              <option className='p-3 rounded' value="relevant">Sort by: Relevant</option>
+              <option className='p-3 rounded' value="low-high">Sort by: Low to High</option>
+              <option className='p-3 rounded' value="high-low">Sort by: High to Low</option>
             </select>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-4 gap-4 gap-y-2">
+          <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-4  gap-1.5 md:gap-3 lg:gap-3  justify-around p-2 mt-2 mb-2  gap-y-2">
             {filterProducts.map((item, index) => (
               <div key={index} className="w-full h-full">
                 <ProductItem
                   id={item.id}
-                  image={item.image}
+                  image={`https://atelierluphien.com/${item.thumbnail.local_path}`}
                   name={item.name}
                   price={item.price}
                 />

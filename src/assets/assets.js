@@ -39,9 +39,13 @@ import img38 from '../assets/6srt.jpg';
 import img39 from '../assets/7srt.jpg';
 import img40 from '../assets/8srt.jpg';
 import img41 from '../assets/9srt.jpg';
-
+import hero from '../assets/white_logo.png';
+import bg_img from '../assets/bg_img.jpg';
+import filter_img from '../assets/filter_img.jpg';
+import about_thumb from '../assets/about_thumb.png';
 
 export const assets = {
+   hero,
    img1,
    img2,
    img3,
@@ -84,7 +88,8 @@ export const assets = {
    shirt6: img39,
    shirt7: img40,
    shirt8: img41,
-
+   filter_img,
+   about_thumb
 }
 
 export const products = [

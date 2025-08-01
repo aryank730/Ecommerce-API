@@ -1,74 +1,106 @@
-import { createContext, useEffect, useState } from 'react'
-import { products } from '../assets/assets.js';
+import { createContext, useEffect, useState, useContext } from 'react';
 import { toast } from 'react-toastify';
+import userApi from '../services/userApi';
 
-export const ShopContext = createContext()
+const ShopContext = createContext();
+export const useShop = () => useContext(ShopContext);
 
-const ShopContextProvider = (props) => {
+export const ShopContextProvider = ({ children }) => {
+  const currency = '₹';
+  const delivery_fee = 40;
 
-   const currency = '₹'
-   const delivery_fee = 40
-   const [cartItems, setCartItems] = useState({});
+  const [cartItems, setCartItems] = useState({});
+  const [products, setProducts] = useState([]);
+  const [isCartLoading, setIsCartLoading] = useState(false);
+  const [cartError, setCartError] = useState(null);
 
-
-   const addTocart = async (itemId, size) => {
-
-      if (!size) {
-         toast.error("Please select a size before adding to cart");
-         return;
+  // 🔁 Fetch products on mount
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await userApi.get('/products');
+        setProducts(res.data.products);
+      } catch (error) {
+        toast.error('Failed to load products');
+        console.error(error);
       }
+    };
 
-      let cartData = structuredClone(cartItems);
-      if (cartData[itemId]) {
-         if (cartData[itemId][size]) {
-            cartData[itemId][size] += 1;
-         } else {
-            cartData[itemId][size] = 1;
-         }
-      } else {
-         cartData[itemId] = {};
-         cartData[itemId][size] = 1;
-      }
-      setCartItems(cartData);
-   }
+    fetchProducts();
+  }, []);
 
-   const getCartCount = () => {
-      let totalCount = 0;
-      for (const item in cartItems) {
-         for (const size in cartItems[item]) {
-            try {
-               if (cartItems[item][size] > 0) {
-                  totalCount += cartItems[item][size];
-               }
-            } catch (error) {
-               // console.error("Error calculating cart count:", error);
-            }
-         }
-      }
-      return totalCount;
-   }
+  // 🔁 Fetch cart if user is logged in
+  useEffect(() => {
+    const token = localStorage.getItem('access_token_user');
+    if (token) {
+      fetchCart();
+    } else {
+      console.warn('⚠️ No user token found, cart not fetched.');
+    }
+  }, []);
 
-   useEffect(() => {
-      console.log("Cart Items Updated:", cartItems);
-   }, [cartItems]);
+  // ✅ Fetch cart function
+  const fetchCart = async () => {
+    setIsCartLoading(true);
+    setCartError(null);
 
-   const value = {
-      products,
-      currency,
-      delivery_fee,
-      cartItems,
-      addTocart,
-      getCartCount,
-   }
+    try {
+      const res = await userApi.get('/cart');
+      const details = res.data.details || [];
 
-   return (
-      <ShopContext.Provider value={value}>
-         {props.children}
-      </ShopContext.Provider>
-   );
+      const transformed = {};
+      details.forEach((item) => {
+        const productId = item.product.id;
+        const quantity = item.quantity;
+        transformed[productId] = quantity;
+      });
+
+      setCartItems(transformed);
+    } catch (error) {
+      setCartItems({}); // fallback to empty
+      setCartError(error?.response?.data?.message || 'Cart fetch failed');
+      console.error('❌ Cart fetch failed:', error);
+    } finally {
+      setIsCartLoading(false);
+    }
+  };
+
+  // ✅ Add to cart + update count
+  const addTocart = async (productId) => {
+    if (!productId) return;
+
+    try {
+      const payload = {
+        product_id: productId,
+        quantity: 1,
+      };
+
+      await userApi.post('/cart/add', payload);
+      toast.success('Item added to cart');
+      await fetchCart(); // ✅ refresh cart state
+    } catch (error) {
+      toast.error('Failed to add item to cart');
+      console.error('❌ Add to cart failed:', error);
+    }
+  };
+
+  // ✅ Get cart count
+  const getCartCount = () => {
+    return Object.values(cartItems).reduce((total, qty) => total + qty, 0);
+  };
+
+  const value = {
+    products,
+    currency,
+    delivery_fee,
+    cartItems,
+    isCartLoading,
+    cartError,
+    addTocart,
+    getCartCount,
+  };
+
+  return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
 };
 
-
-
-
-export default ShopContextProvider
+export default ShopContext;

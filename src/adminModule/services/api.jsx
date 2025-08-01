@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL:  'http://168.231.122.38:3001/',
+  baseURL:  'https://atelierluphien.com/api/',
 });
 
 // Request interceptor to add auth token
@@ -15,6 +15,7 @@ api.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 );
+
 
 // Response interceptor to handle errors
 api.interceptors.response.use(

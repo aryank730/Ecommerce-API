@@ -7,19 +7,24 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate:seo": "node generate-static-seo-files.mjs"
+
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.4",
     "axios": "^1.10.0",
     "chart.js": "^4.5.0",
-    "react": "^19.0.0",
+    "node-fetch": "^3.3.2",
+    "react": "^18.3.1",
     "react-chartjs-2": "^5.3.0",
-    "react-dom": "^19.0.0",
+    "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
     "react-icons": "^5.5.0",
     "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^7.5.0",
     "react-toastify": "^11.0.5",
+    "tailwind-scrollbar-hide": "^4.0.0",
     "tailwindcss": "^4.1.4"
   },
   "devDependencies": {

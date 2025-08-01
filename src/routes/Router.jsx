@@ -2,19 +2,18 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
 import App from '../App';
-import ShopContextProvider from '../context/ShopContext';
+import { ShopContextProvider } from '../context/ShopContext'; // ✅ named import
 import AdminApp from '../adminModule/AdminApp';
 import { AuthProvider } from '../adminModule/contexts/AuthContext';
 
 const AppRouter = () => {
   const location = useLocation();
-
   const isAdminRoute = location.pathname.startsWith('/admin');
+
   useEffect(() => {
     const body = document.body;
     const root = document.getElementById('root');
 
-    // Set body attributes for admin panel
     if (isAdminRoute) {
       body.setAttribute('data-typography', 'cairo');
       body.setAttribute('data-theme-version', 'dark');
@@ -29,13 +28,11 @@ const AppRouter = () => {
       body.setAttribute('direction', 'ltr');
       body.setAttribute('data-primary', 'color_1');
 
-      // Change #root to #main-wrapper and add class="show"
       if (root) {
         root.setAttribute('id', 'main-wrapper');
         root.classList.add('show');
       }
     } else {
-      // Reset body attributes for non-admin
       body.removeAttribute('data-typography');
       body.removeAttribute('data-theme-version');
       body.removeAttribute('data-layout');
@@ -49,13 +46,11 @@ const AppRouter = () => {
       body.removeAttribute('direction');
       body.removeAttribute('data-primary');
 
-      // Reset root element
       if (root) {
-        root.setAttribute('id', 'root'); // if it was changed, revert
+        root.setAttribute('id', 'root');
         root.classList.remove('show');
       }
 
-      // In case ID was changed in admin mode
       const mainWrapper = document.getElementById('main-wrapper');
       if (mainWrapper) {
         mainWrapper.setAttribute('id', 'root');
@@ -63,7 +58,7 @@ const AppRouter = () => {
       }
     }
   }, [isAdminRoute]);
-  
+
   if (isAdminRoute) {
     return (
       <AuthProvider>
@@ -73,8 +68,7 @@ const AppRouter = () => {
   }
 
   return (
-      <ShopContextProvider>
-
+    <ShopContextProvider>
       <App />
     </ShopContextProvider>
   );

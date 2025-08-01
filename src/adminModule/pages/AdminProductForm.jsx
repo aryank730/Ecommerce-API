@@ -131,6 +131,11 @@ const AdminProductForm = () => {
           quantity: parseInt(stock.quantity),
         })),
       };
+      if (form.offer_coupon_id && !isNaN(form.offer_coupon_id)) {
+  payload.offer_coupon_id = parseInt(form.offer_coupon_id);
+} else {
+  delete payload.offer_coupon_id;
+}
       await api.post('/products', payload);
       toast.success('Product created successfully');
       navigate('/admin/products');

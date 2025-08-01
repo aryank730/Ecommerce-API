@@ -1,5 +1,6 @@
 import { useEffect, useContext, useState } from 'react';
-import { ShopContext } from '../context/ShopContext';
+import ShopContext from '../context/ShopContext';
+
 import SectionTitle from '../Components/Title'; // <--- fix this path if needed
 import ProductItem from '../Components/ProductItem'; // make sure this is also imported
 
@@ -7,10 +8,13 @@ const BestSeller = () => {
   const { products } = useContext(ShopContext);
   const [bestSellerProducts, setBestSellerProducts] = useState([]);
 
-  useEffect(() => {
-    const bestProduct = products.filter((item) => item.bestSeller === true);
-    setBestSellerProducts(bestProduct.slice(0, 5));
-  }, [products]); // ✅ added dependency
+useEffect(() => {
+  const bestProduct = products.filter((item) => item.bestSeller === true);
+  console.log("Best seller products:", bestProduct);
+  setBestSellerProducts(bestProduct.slice(0, 5));
+}, [products]);
+
+
 
   return (
     <div className="my-10">
@@ -25,6 +29,7 @@ const BestSeller = () => {
           <div key={index} className="w-full h-full">
             <ProductItem
               id={item.id}
+              slug={item.slug}
               image={item.image}
               name={item.name}
               price={item.price}
