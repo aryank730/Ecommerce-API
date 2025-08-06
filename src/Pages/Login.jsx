@@ -1,23 +1,25 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import userApi from '../services/userApi';
 import fab_icon from '../assets/fab_icon.png';
-import { IoMdCloseCircleOutline } from "react-icons/io";
 
-const Login = ({ onClose, onSwitchToRegister }) => {
+const Login = () => {
   const navigate = useNavigate();
-  const modalRef = useRef(null); // ✅ Ref for detecting outside clicks
+  const location = useLocation();
 
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
 
+  // Get the redirect path from state or fallback to "/"
+  const from = location.state?.from?.pathname || '/';
+
   const handleChange = (e) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -25,115 +27,80 @@ const Login = ({ onClose, onSwitchToRegister }) => {
     e.preventDefault();
 
     try {
-      const res = await userApi.post('/auth/user/login', {
-        email: formData.email,
-        password: formData.password
-      });
-
+      const res = await userApi.post('/auth/user/login', formData);
       const { access_token, user } = res.data;
 
       localStorage.setItem('access_token_user', access_token);
       localStorage.setItem('access_user', JSON.stringify(user));
 
       toast.success('Login successful');
-      navigate('/');
-      onClose(); // ✅ Close modal after successful login
+      navigate(from, { replace: true }); // Redirect back to previous page
     } catch (error) {
       toast.error(error?.response?.data?.message || 'Login failed');
-      console.error(error);
     }
   };
 
-  // ✅ Close on outside click
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (modalRef.current && !modalRef.current.contains(e.target)) {
-        onClose();
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [onClose]);
-
   return (
-    <div className="fixed inset-0  bg-opacity-30 z-50 flex justify-center items-start pt-20">
-      <div
-        ref={modalRef}
-        className="bg-white fixed right-0 md:right-56 mt-16 w-full md:w-[25%] md:h-[40rem] h-[45rem] rounded flex flex-col justify-center lg:px-8 p-6 py-8 px-4 shadow sm:rounded-lg sm:px-10"
-      >
-        {/* Close button */}
-        <div onClick={onClose} className='absolute top-2 right-2 cursor-pointer'>
-          <IoMdCloseCircleOutline size={28} />
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+      <div className="bg-white w-full max-w-md p-8 rounded shadow-md">
+        <div className="text-center mb-6">
+          <img className="mx-auto h-16" src={fab_icon} alt="Logo" />
+          <h2 className="mt-4 text-2xl font-bold text-gray-800">Sign in to your account</h2>
         </div>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit}>
-          {/* Logo and heading */}
-          <div className="py-12">
-            <img className="mx-auto h-16 w-auto" src={fab_icon} alt="Workflow" />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Sign in to your account
-            </h2>
-          </div>
-
-          {/* Email */}
-          <label htmlFor="email" className="block text-sm font-medium py-2 text-gray-700">Email address</label>
-          <div className="mt-1">
+        <form onSubmit={handleSubmit} autoComplete="off">
+          <div className="mb-4">
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              Email address
+            </label>
             <input
               id="email"
-              name="email"
               type="email"
+              name="email"
               required
               value={formData.email}
               onChange={handleChange}
-              className="block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 sm:text-sm"
-              placeholder="you@example.com"
+              className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
             />
           </div>
 
-          {/* Password */}
-          <div className="mt-6">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
-            <div className="mt-1">
-              <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                value={formData.password}
-                onChange={handleChange}
-                className="block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 sm:text-sm"
-              />
-            </div>
+          <div className="mb-6">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              required
+              value={formData.password}
+              onChange={handleChange}
+              className="mt-1 block w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+            />
           </div>
 
-          {/* Submit Button */}
-          <div className="mt-6">
-            <button
-              type="submit"
-              className="w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-blue-600"
-            >
-              Sign in
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded"
+          >
+            Sign in
+          </button>
         </form>
 
-        {/* Switch to Register */}
-        <div className="text-right my-4">
-          <span className="text-gray-500">No Account?</span>
-          <button
-            onClick={() => {
-              onClose(); // close Login modal
-              onSwitchToRegister(); // open Register modal
-            }}
-            className="text-blue-500 font-medium ml-1"
-          >
-            Sign up
-          </button>
+        <div className="text-right mt-4 text-sm text-gray-600">
+          No account?{' '}
+          <Link to="/register" className="text-blue-500 hover:underline font-medium">
+            Register
+          </Link>
         </div>
       </div>
+
+
+
+
+      
     </div>
   );
 };
+
 export default Login;

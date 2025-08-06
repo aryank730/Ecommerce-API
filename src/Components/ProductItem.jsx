@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import bg_img from '../assets/bg_img.jpg' // Assuming you have a background image in your assets
+import bg_img from '../assets/bg_img.jpg';
 import ShopContext from '../context/ShopContext';
 
 
@@ -13,10 +13,10 @@ const ProductItem = ({ id, slug, name, image, price }) => {
    return (
       <>
          <Link className=' cursor-pointer ' to={`/product/${slug}`}>
-            <div className=" m-auto -mt-10 md:m-auto  lg:m-4 flex flex-col  md:space-x-1.5 lg:space-x-2.5  w-full md:w-[90%] lg:w-[90%] overflow-hidden rounded-md  bg-white shadow-md">
-               <div className="relative border border-gray-100 w-full gap-4 overflow-hidden rounded-xl p-2">
+            <div className=" m-auto -mt-10 md:m-auto  lg:m-4 flex flex-col  px-2 md:px-0  py-2 w-full md:w-[92%] lg:w-[94%] overflow-hidden rounded-md  bg-white">
+               <div className="relative border  w-full gap-4 overflow-hidden scroll-smooth rounded-xl">
                   <img
-                     className="w-full object-cover mx-auto transition-transform duration-200 hover:scale-105"
+                     className="w-full h-[256px] md:h-[320px] object-cover mx-auto transition-transform duration-200 hover:scale-105"
                      src={image}
                      alt="product image"
                   />
@@ -31,14 +31,17 @@ const ProductItem = ({ id, slug, name, image, price }) => {
                   backgroundPosition: 'center',
                   backgroundRepeat: 'no-repeat',
                   opacity: 0.8,
-               }} className="mt-0 pt-0 bg-zinc-200  px-3 pb-0">
+                  filter: 'grayscale(100%)',
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none'
+               }} className="mt-0 z-10 pt-0 bg-zinc-200 h-12 md:h-20 scroll-hidden overflow-y-scroll px-3 pb-0">
                   <div>
-                     <h5 className="text-[17px] tracking-tight text-slate-900">
+                     <div style={{fontFamily:'system-ui'}} className="text-[14px] md:text-[16px] font-semibold text-slate-900">
                         {name}
-                     </h5>
+                     </div>
                   </div>
                   <div className="mt-0 relative mb-0  items-center justify-between">
-                     <div className="flex items-center">
+                     {/* <div className="flex items-center">
                         <svg
                            aria-hidden="true"
                            className="h-5 w-5 text-yellow-300"
@@ -87,16 +90,15 @@ const ProductItem = ({ id, slug, name, image, price }) => {
                         <span className="mr-2 p-1 text-white  ml-3 rounded-md bg-green-500  text-[10px] ">
                            5.0
                         </span>
-                     </div>
+                     </div> */}
                      <p>
-                        <span className="text-xl font-bold text-black">{currency}{price}</span>
+                        <span className="text-md md:text-lg font-bold text-black">{currency}{price}</span>
                         {/* <span className="text-sm text-slate-900 line-through"> {currency} 699</span> */}
                      </p>
-
                      
-                  {/* <span className="absolute -bottom-5 text-[10px] md:text-[14px] right-0 m-1 rounded-full  px-2 text-center text-sm font-medium text-white">
+                     {/* <span className="absolute -bottom-5 text-[10px] md:text-[14px] right-0 m-1 rounded-full  px-2 text-center text-sm font-medium text-white">
                      22 <span className='text-[10px] text-black'>OF </span> 50
-                  </span> */}
+                     </span> */}
 
                   </div>
                   
