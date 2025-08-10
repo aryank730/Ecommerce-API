@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from '../services/api';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { flattenCategoryTree } from '../utils/categoryHelpers';
 
 const AdminProductForm = () => {
   const navigate = useNavigate();
@@ -41,7 +42,8 @@ const AdminProductForm = () => {
         api.get('/reviews/sizes'),
         api.get('/offer-coupons'),
       ]);
-      setCategories(catRes.data);
+       const flatCats = flattenCategoryTree(catRes.data);
+    setCategories(flatCats);
       setColors(colorRes.data);
       setSizes(sizeRes.data);
       setCoupons(couponRes.data.filter(c => c.is_active));
@@ -158,15 +160,24 @@ const AdminProductForm = () => {
         <textarea className="form-control" name="description" value={form.description} onChange={handleChange} />
       </div>
 
-      <div className="mb-3">
-        <label>Category</label>
-        <select className="form-control" name="category_id" value={form.category_id} onChange={handleChange} required>
-          <option value="">Select Category</option>
-          {categories.map((cat) => (
-            <option key={cat.id} value={cat.id}>{cat.name}</option>
-          ))}
-        </select>
-      </div>
+    <div className="mb-3">
+  <label>Category</label>
+  <select
+    className="form-control"
+    name="category_id"
+    value={form.category_id}
+    onChange={handleChange}
+    required
+  >
+    <option value="">Select Category</option>
+    {categories.map(cat => (
+      <option key={cat.id} value={cat.id}>
+        {cat.name}
+      </option>
+    ))}
+  </select>
+</div>
+
 
       <div className="mb-3">
         <label>Price</label>

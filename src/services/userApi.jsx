@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const userApi = axios.create({
-  baseURL: 'https://atelierluphien.com/api/',
-  // baseURL: 'http://localhost:3001/api/',
+  // baseURL: 'https://atelierluphien.com/api/',
+  baseURL: 'http://localhost:3001/api/',
 
 });
 

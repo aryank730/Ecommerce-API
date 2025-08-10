@@ -41,7 +41,7 @@ const AdminCategoryForm = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await api.get('/categories/tree');
+      const res = await api.get('/categories');
       setCategories(res.data);
     } catch {
       toast.error('Failed to load categories');
@@ -79,7 +79,7 @@ const AdminCategoryForm = () => {
 
     const payload = {
       ...formData,
-      parent_id: formData.parent_id || null,
+       parent_id: formData.parent_id ? Number(formData.parent_id) : null,
       file_id: formData.file_id || null,
       is_active: Boolean(formData.is_active),
     };

@@ -4,9 +4,9 @@ import bg_img from '../assets/bg_img.jpg';
 import ShopContext from '../context/ShopContext';
 
 
-const ProductItem = ({ id, slug, name, image, price }) => {
-   console.log('slug', slug);
-   
+const ProductItem = ({ id, slug, name, image, price, offer, originalPrice, saveText }) => {
+   console.log('slug', price, offer, originalPrice, saveText);
+
 
    const { currency } = useContext(ShopContext);
 
@@ -20,9 +20,11 @@ const ProductItem = ({ id, slug, name, image, price }) => {
                      src={image}
                      alt="product image"
                   />
-                  {/* <span className="absolute top-0 left-0 m-1 rounded-full bg-gray-600 px-2 text-center text-sm font-medium text-white">
-                     60% OFF
-                  </span> */}
+                  {offer && (
+                     <span className="absolute top-0 left-0 m-1 rounded-full bg-gray-600 px-2 text-center text-sm font-medium text-white">
+                        {offer}
+                     </span>
+                  )}
                </div>
 
                <div style={{
@@ -36,7 +38,7 @@ const ProductItem = ({ id, slug, name, image, price }) => {
                   msOverflowStyle: 'none'
                }} className="mt-0 z-10 pt-0 bg-zinc-200 h-12 md:h-20 scroll-hidden overflow-y-scroll px-3 pb-0">
                   <div>
-                     <div style={{fontFamily:'system-ui'}} className="text-[14px] md:text-[16px] font-semibold text-slate-900">
+                     <div style={{ fontFamily: 'system-ui' }} className="text-[14px] md:text-[16px] font-semibold text-slate-900">
                         {name}
                      </div>
                   </div>
@@ -91,17 +93,33 @@ const ProductItem = ({ id, slug, name, image, price }) => {
                            5.0
                         </span>
                      </div> */}
-                     <p>
-                        <span className="text-md md:text-lg font-bold text-black">{currency}{price}</span>
-                        {/* <span className="text-sm text-slate-900 line-through"> {currency} 699</span> */}
+                     <p className="flex flex-col">
+                        {offer ? (
+                           <>
+                              <span className="text-md md:text-lg font-bold text-black">
+                                 {currency}{price}
+                              </span>
+                              <span className="text-sm text-slate-900 line-through">
+                                 {currency}{originalPrice}
+                              </span>
+                              <span className="text-green-600 text-xs font-medium">
+                                 {saveText}
+                              </span>
+                           </>
+                        ) : (
+                           <span className="text-md md:text-lg font-bold text-black">
+                              {currency}{price}
+                           </span>
+                        )}
                      </p>
-                     
+
+
                      {/* <span className="absolute -bottom-5 text-[10px] md:text-[14px] right-0 m-1 rounded-full  px-2 text-center text-sm font-medium text-white">
                      22 <span className='text-[10px] text-black'>OF </span> 50
                      </span> */}
 
                   </div>
-                  
+
                   {/* <div 
                      className="flex items-center justify-center rounded-md bg-slate-900 px-2 py-2 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
                   >
